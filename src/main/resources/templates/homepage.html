@@ -50,12 +50,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
             <div class="pushtoleft">
                 <div style="float:left;"> 
-                    <label style="color:green">Mass</label>
-                    <input type="number" style="width: 170px;" value="0.000000" min="0" max="999999.999999" step="0.000001" id="num1" class="form-control" name="Minimum mass" > 
+                    <label style="color:green">Minimum mass</label>
+                    <input type="number" style="width: 170px;" value="100" id="num1" class="form-control" name="lower" > 
                 </div>
                 <div style="float:left;"> 
-                    <label style="color:green">Mass Tolerance</label> 
-                    <input type="number" style="width: 170px;" value="0.000000" min="0" max="999999.999999" step="0.000001" id="num2" class="form-control" name="Maximum mass" >
+                    <label style="color:green">Maximum mass</label> 
+                    <input type="number" style="width: 170px;" value="100000" id="num2" class="form-control" name="upper" >
                 </div>
                <!-- <div style="float:left;"> 
                     <label style="color:green">Formula</label> 
@@ -83,8 +83,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         
     <br>
-        <center>  <p> 	Enter desired Mass and Mass Tolerance of Glycan and click Search to generate database. </p> </center>
-        <center>  <p> 	Click "Help" for more information on how to use GIM-R. </p> </center>
+        <center>  <p> 	 Click Search to query database and list all glycans with neutral mass ranging between minimum-maximum. </p> </center>
+        <center>  <p> 	Click "Help" for more information on how to use GIMoR. </p> </center>
 </html>
     <style>
         

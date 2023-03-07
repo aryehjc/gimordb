@@ -20,165 +20,185 @@
 
 </head>
 
-<!-- <div class="fragmentButton"
-<button type="button" class="btn btn-success" data-dismiss="modal">Fragment</button>
-</div> -->
-<!-- Button trigger modal 
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-
-
-  Launch demo modal
-</button>
 
 
 
+<body>
+    
+<center><font size="+1"><a th:href="@{/home}" class="blue-text">Back</a></font></center>
+                           
+    
+<div draggable="true" style="z-index: 1; position: fixed; left: 0px; bottom: 0px; border: 1px solid; padding: 10px; box-shadow: rgb(136, 136, 136) 5px 10px 8px; background-color: white;">
+    <h4 class="blue"><b>Management actions:</b> 							
+    </h4>	
 
-Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-      </div>
-      <div class="modal-body">
-                                        <div id="GlycanLoader1">
-                                  <br>
-                                  </br>
-        <img class="center1" src="http://i.stack.imgur.com/FhHRx.gif"/> 
-        <p style="text-align:center"> Deleting Entries...</p>
-</div>
-<center><p> Are you sure you want to delete? </p><a class="btn btn-primary" id="dataConfirmOK" >Yes</a>  <button class="btn" data-dismiss="modal" aria-hidden="true">No</button></center></div>
-
-<!-- <center><p> Are you sure you want to delete? </p><a class="btn btn-primary" id="dataConfirmOK" onclick="$(this).prop("disabled",true)">Yes</a>  <button class="btn" data-dismiss="modal" aria-hidden="true">No</button></center></div> -->
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<div class="modal fade" id="photoModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Glycan Image</h4>
-      </div>
-      <div class="modal-body">
-          <img id="glycanphotothumbnail" src="" width="300px" class="center">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-	<!-- <div id="loadingMask" onclick="return false;" style="width: 100%; height: 100%; position: absolute; background-color: rgba(0,0,0,0);"></div> -->
-  <!--  <center> <img width="600px" height="300px" th:src="@{13682.png}"/> </center> , this is how to insert static.-->
-<center><font size="+1"><a th:href="@{/home}"
-                           class="blue-text">Back</a></font></center>
-                           <center><h3>Glycan Management System</h3></center>
-	<!-- The link which sends GET request to "/showNewGlycanForm"  -->
-
-        <center><a th:href="@{/showNewGlycanForm}"
-                   class="btn btn-success">ADD NEW GLYCAN</a>
-                
-
-                   <a th:href="@{/GlycanDictionary}"
-                      class="btn btn-primary">VIEW SUPPORTED GLYCAN IDS</a>
-                      
-                      
-                                         <a th:href="@{/uploadPage}"
-                      class="btn btn-warning">UPLOAD CSV FILE</a>
-                      
-                      
-                      <div class="mydelete">
-					<a th:href="@{/deleteAll}"
-                        data-confirm="Delete Glycan entries?" class="btn btn-danger">DELETE ALL ENTRIES</a>
-                                                        </div>
-            <br>
-                                  <div class="myloader">
-					<a th:href="@{/saveAllGlycans}"
+    <table>
+            <tr>
+                <td>
+                    <a th:href="@{/showNewGlycanForm}" class="btn btn-success">ADD NEW GLYCAN</a>
+                </td>
+                <td>
+                    <div class="myloader">
+                        <a th:href="@{/saveAllGlycans}"
                         class="btn btn-info">LOAD SAMPLE DATA</a>
-                                                        </div>
-            <br>
-                
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>        
+                    <a th:href="@{/GlycanDictionary}" class="btn btn-primary">VIEW SUPPORTED GLYCAN IDS</a>
+                </td>
+                <td>
+                    <a th:href="@{/uploadPage}" class="btn btn-warning">UPLOAD CSV FILE</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mydelete">
+                        <a th:href="@{/deleteAll}" data-confirm="Delete Glycan entries?" class="btn btn-danger">DELETE ALL ENTRIES</a>
+                    </div>
+                </td>
+            </tr>    
 
-                <div> Debugging text and thmeleaf variables here NOT BLOODY WORKING NOW
+        </table>
+          
+</div>
+    
+ <div draggable="true" style="z-index: 1; position: fixed; right: 0px; top: 0px; border: 1px solid; padding: 10px; box-shadow: rgb(136, 136, 136) 5px 10px 8px; background-color: white;">
+    <h4 class="blue"><b>Search options:</b> 							
+    </h4>	
+
+
+    
+        <table>
+            <form th:action="@{/search}">        
+    
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" name="lower" id="minmass" style="text-align: center; width: 100%" placeholder="Minimum mass" size="12" required />              
+                        </td>
+                   
+                        <td>
+                            <input class="form-control" type="text" name="upper" id="maxmass" style="text-align: center; width: 100%" placeholder="Minimum mass" size="12" required />              
+                        </td>
+                        <td>
+                            <button class="btn btn-success btn-sm" title="update glycan table" id="fragbutton">REFRESH SEARCH</button>
+                        </td>                
+                    </tr>	
+            </form>
+        </table>
+    
+        
+</div>   
+    
+<center>    
+    <table>        
+        <tr>
+            <td>
+                <div class="d-flex flex-row align-items-center">
+                <ul class="pagination pagination-lg">
+                  <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
+                      <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search?currentPage=1&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
+                      <span th:unless="${currentPage > 1}">First</span>
+                  </li>
+
+                  <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
+                      <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search?currentPage='+${currentPage - 1}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
+                      <span th:unless="${currentPage > 1}">Previous</span>
+                  </li>
+
+
+
+                  <th:block th:if="${totalPages <= 10}">
+                      <li th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                          <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                      <span th:unless="${currentPage != i}">[[${i}]]</span>
+                      </li>
+                  </th:block>
+
+                  <th:block th:if="${totalPages > 10}">
+                      <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                          <li th:each="i: ${#numbers.sequence(1, 5)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                              <span th:unless="${currentPage != i}">[[${i}]]</span>
+                          </li> 
+                          <li>
+                              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + 6 + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+
+                              <li th:each="i: ${#numbers.sequence(totalPages - 4, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                              <span th:unless="${currentPage != i}">[[${i}]]</span>
+                          </li> 
+
+                      </th:block>
+
+
+                      <th:block th:if="${currentPage > 5 && currentPage < totalPages - 4}">
+
+                          <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${currentPage - 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+                          </li>
+
+                          <li th:each="i: ${#numbers.sequence(currentPage - 4, currentPage + 4)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                              <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                              <span th:unless="${currentPage != i}">[[${i}]]</span>
+                          </li> 
+
+                          <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${currentPage + 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+                          </li>
+
+                      </th:block>
+                  </th:block>      
+
+                  <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
+                      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search?currentPage='+${currentPage + 1}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
+                      <span th:unless="${currentPage < totalPages}">Next</span>
+                  </li>
+
+                  <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
+                      <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search?currentPage='+${totalPages}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
+                      <span th:unless="${currentPage < totalPages}">Last</span>
+                  </li>  
+
+              </div>
+            </td>
+
+        </tr>
+
+
+        <tr>
+            <td>
+
+                <div id="GlycanLoader">
+                    <br>
+                    </br>
+                    <img src="http://i.stack.imgur.com/FhHRx.gif"/> 
+                    <p> Generating Database...</p>
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</center>
+    
+    
+
+    
+<!--
+                <div> <b>Pretty print variables:</b><br>
                 
-                    <p th:text="${currentPage}">  currentPage</p> 
-                
-                
+                    currentPage: <p th:text="${currentPage}"></p> 
+                    pageSize: <p th:text="${pageSize}"></p> 
+                    totalItems <p th:text="${totalItems}"></p> 
+                    totalPages: <p th:text="${totalPages}"></p> 
+                    currentPage > 1: <p th:text="${currentPage > 1}">  </p> 
+                    currentPage < totalPages: <p th:text="${currentPage < totalPages}"></p> 
                 </div>
   
-        
-        
-        
-<div class="d-flex flex-row align-items-center">
-  <ul class="pagination pagination-lg">
-    <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search/?currentPage=1?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
-        <span th:unless="${currentPage > 1}">First</span>
-    </li>
+-->        
+
+   
     
-    <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search/?currentPage='+${currentPage - 1}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
-        <span th:unless="${currentPage > 1}">Previous</span>
-    </li>
-    <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search/?currentPage='+${currentPage + 1}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
-        <span th:unless="${currentPage < totalPages}">Next</span>
-    </li>
-    
-    <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search/?currentPage='+${totalPages}+'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
-        <span th:unless="${currentPage < totalPages}">Last</span>
-    </li>  
-
-
-      <c:if test="${totalPages != 1}">
-            <label style="margin: 2px 8px 2px 8px">
-                   th:text="${currentPage}"
-                   th:text="${totalPages}"
-            </label>
-      </c:if>
-
-      <c:if test="${hasNext}">
-            <button type="submit" class="btn btn-primary btn-md" style="margin: 2px"
-                   onclick="location.href = 'search?currentPage=${currentPage + 1}'">next</button>
-            <button type="submit" class="btn btn-primary btn-md" style="margin: 2px"
-                   onclick="location.href = 'search?currentPage=${totalPages}'">last &raquo;</button>                                    
-      </c:if>
-</div>
-            
-
-    
-            <form id="filter-form" th:action="@{/search/1}">
-                <input type="hidden" name="sortField" th:value="${sortField}" />
-                <input type="hidden" name="sortDir" th:value="${sortDir}" />
-    Filter: <input type="text" name="keyword" id="keyword" style="text-align: center; width: 100%" placeholder="Type here to filter by values..." size="50" th:value="${keyword}" required />
-    &nbsp;
-    <br>
-    <input type="submit" value="Search" />
-    &nbsp;
-    <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
-</form>
-                      
-                   <!--   <a th:href="@{/MyCSVUploadPage}"
-                         class="btn btn-warning">Upload CSV</a> see the controller for mapping-->
-                      
-                              <div id="GlycanLoader">
-                                  <br>
-                                  </br>
-        <img src="http://i.stack.imgur.com/FhHRx.gif"/> 
-        <p> Generating Database...</p>
-</div>
-               
-                  </center>
-
-
-
-
-	<div align="left" style="margin-top: 20px">
+    <div align="left" style="margin-top: 20px">
 		<table id="MyTable" class="table table-bordered border-primary">
 			<thead>
 				<tr>
@@ -252,104 +272,82 @@ Modal-->
 				</tr>
                         </table>
 			</tbody>
-                    
-                   <!-- 	<div>&nbsp;</div>
-	 <div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order</i></div> 
-	<div>&nbsp;</div>
-	<div th:if="${totalPages > 1}">
-		Total Items: [[${totalItems}]]
-		&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-		
-		<a th:if="${currentPage > 1}" th:href="@{'/search/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
-		<span th:unless="${currentPage > 1}">First</span>
-		&nbsp;&nbsp;
-		
-		<a th:if="${currentPage > 1}" th:href="@{'/search/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
-		<span th:unless="${currentPage > 1}">Previous</span>
-		
-		&nbsp;&nbsp;
-		
-		<span th:each="i: ${#numbers.sequence(1, totalPages)}">
-			<a th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-			<span th:unless="${currentPage != i}">[[${i}]]</span>
-			&nbsp;
-		</span>
-		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
-		<span th:unless="${currentPage < totalPages}">Next</span>
-		&nbsp;&nbsp;
-		
-		<a th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
-		<span th:unless="${currentPage < totalPages}">Last</span>
-	</div> --> 
+
                     
 	</div>
  
-         
-        		                         <div class="totalpages" th:if="${totalPages > 1}" style="text-align:center">
-                                                     <div class="TotalPagination" style="text-align:center">   Total Items: [[${totalItems}]] </div>
-                    
-  <ul class="pagination pagination-lg">
-      <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
-          <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
-          <span th:unless="${currentPage > 1}">First</span>
-      </li>
-    
-      <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
-    <span th:unless="${currentPage > 1}">Previous</span>
-          </li>
-      
-      
-      <th:block th:if="${totalPages <= 10}">
-    <li th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
-        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-    <span th:unless="${currentPage != i}">[[${i}]]</span>
-    </li>
-      </th:block>
-      
-      <th:block th:if="${totalPages > 10}">
-          <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
-              <li th:each="i: ${#numbers.sequence(1, 5)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
-        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-    <span th:unless="${currentPage != i}">[[${i}]]</span>
-    </li> 
-              <li>
-                  <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + 6 + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
-         
-                        <li th:each="i: ${#numbers.sequence(totalPages - 4, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
-        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-    <span th:unless="${currentPage != i}">[[${i}]]</span>
-    </li> 
-          
-          </th:block>
-          
-         
-          <th:block th:if="${currentPage > 5 && currentPage < totalPages - 4}">
-              <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${currentPage - 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a></li>
-              
-                                      <li th:each="i: ${#numbers.sequence(currentPage - 4, currentPage + 4)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
-        <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
-    <span th:unless="${currentPage != i}">[[${i}]]</span>
-    </li> 
-              <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search/' + ${currentPage + 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a></li>
-          
-          </th:block>
-</th:block>
-    
-    <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
-    <span th:unless="${currentPage < totalPages}">Next</span>
-    </li>
-    
-       <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
-        <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
-    <span th:unless="${currentPage < totalPages}">Last</span>
-    </li>
-    
-  </ul>
-                        
-                                                 </div>
+ 
+<center>
+    <div class="d-flex flex-row align-items-center">
+      <ul class="pagination pagination-lg">
+        <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
+            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search?currentPage=1&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">First</a>
+            <span th:unless="${currentPage > 1}">First</span>
+        </li>
+
+        <li th:class="${currentPage > 1 ?  'page-item': 'page-item disabled'}">
+            <a class="page-link" th:if="${currentPage > 1}" th:href="@{'/search?currentPage='+${currentPage - 1}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Previous</a>
+            <span th:unless="${currentPage > 1}">Previous</span>
+        </li>
+
+
+        <th:block th:if="${totalPages <= 10}">
+            <li th:each="i: ${#numbers.sequence(1, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+            <span th:unless="${currentPage != i}">[[${i}]]</span>
+            </li>
+        </th:block>
+
+        <th:block th:if="${totalPages > 10}">
+            <th:block th:if="${currentPage <= 5 || currentPage >= totalPages - 4}">
+                <li th:each="i: ${#numbers.sequence(1, 5)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span>
+                </li> 
+                <li>
+                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + 6 + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+
+                    <li th:each="i: ${#numbers.sequence(totalPages - 4, totalPages)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '&sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span>
+                </li> 
+
+            </th:block>
+
+
+            <th:block th:if="${currentPage > 5 && currentPage < totalPages - 4}">
+
+                <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${currentPage - 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+                </li>
+
+                <li th:each="i: ${#numbers.sequence(currentPage - 4, currentPage + 4)}" th:class="${currentPage != i ? 'page-item': 'page-item active'}">
+                    <a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${i}]]</a>
+                    <span th:unless="${currentPage != i}">[[${i}]]</span>
+                </li> 
+
+                <li><a class="page-link" th:if="${currentPage != i}" th:href="@{'/search?currentPage=' + ${currentPage + 5} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">...</a>
+                </li>
+
+            </th:block>
+        </th:block>      
+
+        <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
+            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search?currentPage='+${currentPage + 1}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Next</a>
+            <span th:unless="${currentPage < totalPages}">Next</span>
+        </li>
+
+        <li th:class="${currentPage < totalPages ?  'page-item': 'page-item disabled'}">
+            <a class="page-link" th:if="${currentPage < totalPages}" th:href="@{'/search?currentPage='+${totalPages}+'&sortField=' + ${sortField} + '&sortDir=' + ${sortDir}  + ${keyword != null ? '&keyword=' + keyword : ''}}">Last</a>
+            <span th:unless="${currentPage < totalPages}">Last</span>
+        </li>  
+    </div>
+</center>      
+</p>    
+        
+        
+        
+        
+        
         <style>
             
             
@@ -376,9 +374,7 @@ Modal-->
 table td 
 {
   table-layout:fixed;
-  width:60px;
   min-width:60px;
-  max-width:60px;
   overflow:hidden;
   word-wrap:break-word;
 }

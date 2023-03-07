@@ -29,24 +29,19 @@ public class GlycanController {
 	@GetMapping("/search")
 	// This means that this method will be executed when user sends GET Requests to "/"
 	// In our case, "http://localhost:8080/"
-	public String viewHomePage(Model model) {
-		//	We can use this attribute "listGlycans" to perform server-side rendering of the HTML with using Thymeleaf.
-		//	We set all glycans data to "listGlycans"
-                String keyword = null;
-                return getAllGlycans(model, 1, 30, "neutralmass", "asc", keyword);
-        }
-
-	@GetMapping("/search/{pageNumber}")
-	public String getAllGlycans(Model model,
-                                    @RequestParam(defaultValue = "0") int currentPage,
-                                    @RequestParam(defaultValue = "6") Integer pageSize,
+	public String viewHomePage(Model model,
+                                    @RequestParam(defaultValue = "1") int currentPage,
+                                    @RequestParam(defaultValue = "5") Integer pageSize,
                                     @RequestParam(defaultValue = "neutralmass") String sortField,
                                     @RequestParam(defaultValue = "asc") String sortDir,
+                                    @RequestParam(defaultValue = "0") String lower,
+                                    @RequestParam(defaultValue = "100000") String upper,
                                     @Param("keyword") String keyword) {
-
+		
+            
 
      
-            Page<Glycan> pages = glycanservice.getAllGlycans(currentPage, sortField, sortDir, pageSize, keyword);
+            Page<Glycan> pages = glycanservice.getAllGlycans(currentPage, sortField, sortDir, pageSize, keyword, lower, upper);
 
             
             List<Glycan> listGlycans = pages.getContent(); 
@@ -58,6 +53,7 @@ public class GlycanController {
             model.addAttribute("hasPrevious", pages.hasPrevious());
             model.addAttribute("hasNext", pages.hasNext());
             model.addAttribute("totalPages", pages.getTotalPages());
+            model.addAttribute("pageSize", pageSize);
             model.addAttribute("totalItems", pages.getTotalElements());
             
             model.addAttribute("sortField", sortField);
